@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &396164219
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -5211,7 +5211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!96 &1632575948
 TrailRenderer:
   serializedVersion: 3
@@ -5360,7 +5360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1982329676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5374,7 +5374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 1982329677}
-  timeHoldingDownMouse: 0
+  holdToRemoveDuration: 0.5
 --- !u!120 &1982329677
 LineRenderer:
   serializedVersion: 2

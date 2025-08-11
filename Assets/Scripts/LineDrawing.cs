@@ -5,7 +5,10 @@ using UnityEngine;
 public class LineDrawing : MonoBehaviour
 {
     public LineRenderer lineRenderer;
-    public float timeHoldingDownMouse;
+
+    public float holdToRemoveDuration;
+
+    private float timeHoldingDownMouse = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +31,7 @@ public class LineDrawing : MonoBehaviour
         {
             timeHoldingDownMouse += Time.deltaTime;
             Debug.Log("Time holding down mouse[" + timeHoldingDownMouse.ToString() + "]");
-            if(lineRenderer.positionCount != 0)
+            if (lineRenderer.positionCount != 0 && timeHoldingDownMouse > holdToRemoveDuration)
             {
                 lineRenderer.positionCount--;
                 timeHoldingDownMouse = 0f;
@@ -37,7 +40,8 @@ public class LineDrawing : MonoBehaviour
         }
         else if(Input.GetMouseButtonUp(1))
         {
-            //timeHoldingDownMouse = 
+            timeHoldingDownMouse = 0f;
+            Debug.Log("Resetting the time.");
         }
     }
 }
