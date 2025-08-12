@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Pulse : MonoBehaviour
 {
-    public float speed = 3f;
+    private float speed = 3f;
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +17,14 @@ public class Pulse : MonoBehaviour
     {
         transform.position += Vector3.right * speed * Time.deltaTime;
 
-        if (transform.position.x > Screen.width)
+        Vector3 pulsePosition = Camera.main.WorldToScreenPoint(transform.position);
+
+        if (pulsePosition.x > Screen.width)
         {
-            Vector3 newPosition = new Vector3(0f, transform.position.y, 0f);
-            transform.position = newPosition;
+            pulsePosition.x = 0;
         }
+
+        transform.position = Camera.main.ScreenToWorldPoint(pulsePosition);
+
     }
 }
