@@ -503,6 +503,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  trailRenderer: {fileID: 151029468}
 --- !u!212 &1137544418
 SpriteRenderer:
   m_ObjectHideFlags: 0

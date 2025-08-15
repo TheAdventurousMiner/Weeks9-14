@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Pulse : MonoBehaviour
@@ -8,7 +7,8 @@ public class Pulse : MonoBehaviour
     private float speed = 10f;
     public AnimationCurve pulseCurve;
     private float timePassed;
-  
+
+    public TrailRenderer trailRenderer;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +26,7 @@ public class Pulse : MonoBehaviour
 
         if (pulsePosition.x > Screen.width)
         {
-            pulsePosition.x = 0;
-            timePassed = 0f;
+            StartCoroutine(resetPulse(pulsePosition));
         }
 
         float yCurve = pulseCurve.Evaluate(timePassed);
@@ -36,7 +35,18 @@ public class Pulse : MonoBehaviour
 
         transform.position = new Vector3(newPosition.x , yCurve, 0f);
 
-       
-
     }
+    private IEnumerator resetPulse(Vector3 pulsePosition)
+    {
+        trailRenderer.emitting = false;
+        yield return new WaitForSeconds(0.1f);
+
+        pulsePosition.x = 0;
+        timePassed = 0f;
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(pulsePosition);
+        transform.position = new Vector3(worldPosition.x, pulseCurve.Evaluate(timePassed), 0f);
+        yield return null;
+        trailRenderer.emitting = true;
+    }
+
 }
